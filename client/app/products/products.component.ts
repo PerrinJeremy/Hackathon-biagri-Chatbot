@@ -2,23 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../services/dashboard.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class ProductsComponent implements OnInit {
 
   constructor(private dash: DashboardService) { }
+
   list;
-  sale;
-  farmers;
   isLoading1 = true;
   isLoading2 = true;
   isLoading3 = true;
+  packages;
+  sale;
 
   ngOnInit() {
     this.getList();
   }
+
   getList() {
     this.dash.getSupplyProductList().subscribe(product => {
       this.list = product;
@@ -28,9 +30,8 @@ export class DashboardComponent implements OnInit {
       this.sale = cereal;
       this.isLoading2 = false;
     });
-    this.dash.getFarmerList().subscribe(data => {
-      this.farmers = data;
-      console.log(this.farmers.farmers);
+    this.dash.getPackagingList().subscribe(pack => {
+      this.packages = pack;
       this.isLoading3 = false;
     });
   }

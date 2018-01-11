@@ -1,3 +1,55 @@
-<p>
-  dashboard works!
-</p>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h2>Approvisionnement Engrais</h2>
+    </div>
+    <div *ngIf="!isLoading1" class="card-block">
+      <ul>
+        <li *ngFor='let product of list.products'>
+          <h4>{{product.name}}</h4>
+          <p>{{product.description}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <h2>Vente Céréales</h2>
+    </div>
+    <div *ngIf="!isLoading2" class="card-block">
+      <ul>
+        <li *ngFor='let product of sale.products'>
+          <h4>{{product.name}}</h4>
+          <p>{{product.description}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <h2>Agriculteurs</h2>
+    </div>
+    <div *ngIf="!isLoading3" class="card-block">
+      <ul>
+        <li *ngFor='let person of farmers.farmers'>
+          <h4>{{person.firstName}} {{person.lastName}}</h4>
+          <p>Phone: {{person.phone}}</p>
+          <p>Email: {{person.email}}</p>
+          <p>CP: {{person.zipCode}}</p>
+          <div class="card">
+            <div class="card-header">
+              <h4>Engagements</h4>
+            </div>
+            <div class="card-block">
+              <div *ngFor='let engagement of person.engagements'>
+                <p>{{engagement.id}}</p>
+                <p>Nb de camions: {{engagement.numberOfTrucks}}</p>
+                <p>Date: {{engagement.createdAt}}</p>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

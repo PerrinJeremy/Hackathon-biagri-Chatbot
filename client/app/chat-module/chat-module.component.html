@@ -1,3 +1,11 @@
-<p>
-  chat-module works!
-</p>
+<h1>Dialogflow TEST</h1>  
+<ng-container *ngFor="let m of messages | async">  
+  <div class="message" [ngClass]="{ 'from': m.from === 'bot',  
+                                    'to':   m.from === 'user' }">  
+    {{ m.msg }}  
+  </div>  
+</ng-container>  
+<label for="nameField">Your Message</label>  
+   <input [(ngModel)]="strMsg" (keyup.enter)="sendMessage()" type="text">  
+   <br>  
+<button (click)="sendMessage()">Send</button> 

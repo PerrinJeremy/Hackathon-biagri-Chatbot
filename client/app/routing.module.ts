@@ -13,10 +13,18 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TeamMembersComponent } from './team-members/team-members.component';
+import { ProductsComponent } from './products/products.component';
+import { OffersComponent } from './offers/offers.component';
+import { ChatModuleComponent } from './chat-module/chat-module.component';
 
 const routes: Routes = [
   { path: '', component: AboutComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'products', component: ProductsComponent },
+  { path: 'team', component: TeamMembersComponent },
+  { path: 'offers', component: OffersComponent },
+  { path: 'chat', component: ChatModuleComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },

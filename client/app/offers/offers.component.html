@@ -1,0 +1,21 @@
+<div class="container">
+  <div>
+    <input [(ngModel)]="product" type="text">
+    <button (click)="getProductId()">Chercher Offres</button>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <h2>Offres disponibles</h2>
+    </div>
+    <div *ngIf="!isLoading1" class="card-block">
+      <ul>
+        <li *ngFor='let offer of offers.offers'>
+          <h4>{{offer.id}}</h4>
+          <p>Du: {{offer.beginPeriod}}</p>
+          <p>Au: {{offer.endPeriod}}</p>
+          <p>Prix: {{offer.price}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+          <h2>Membres</h2>
+        </div>
+        <div *ngIf="!isLoading3" class="card-block">
+          <ul>
+            <li *ngFor='let person of team'>
+              <h4>{{person.firstName}} {{person.lastName}}</h4>
+              <p>Email: {{person.email}}</p>
+              <p>Type: {{person.managerType}}</p>
+              <p>Phone: {{person.phone}}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+</div>

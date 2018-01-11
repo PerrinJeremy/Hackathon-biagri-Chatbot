@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h2>Approvisionnement Engrais</h2>
+    </div>
+    <div *ngIf="!isLoading1" class="card-block">
+      <ul>
+        <li *ngFor='let product of list.products'>
+          <h4>{{product.name}}</h4>
+          <h4>Abbreviation: {{product.abbreviation}}</h4>          
+          <p>{{product.description}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+      <div class="card-header">
+        <h2>Approvisionnement Engrais</h2>
+      </div>
+      <div *ngIf="!isLoading3" class="card-block">
+        <ul>
+          <li *ngFor='let package of packages.packaging'>
+            <h4>{{package.name}}</h4>
+            <h4>Quantité: {{package.unitPerPackaging}} {{package.unit}}</h4>
+          </li>
+        </ul>
+      </div>
+    </div>
+  <div class="card">
+    <div class="card-header">
+      <h2>Vente Céréales</h2>
+    </div>
+    <div *ngIf="!isLoading2" class="card-block">
+      <ul>
+        <li *ngFor='let product of sale.products'>
+          <h4>{{product.name}}</h4>
+          <p>{{product.description}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

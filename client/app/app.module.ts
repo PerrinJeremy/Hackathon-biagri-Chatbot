@@ -20,6 +20,12 @@ import { ChatService } from './services/chat.service';
 import { ChatModuleComponent } from './chat-module/chat-module.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardService } from './services/dashboard.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+import { TeamMembersComponent } from './team-members/team-members.component';
+import { ProductsComponent } from './products/products.component';
+import { OfferService } from './services/offer.service';
+import { OffersComponent } from './offers/offers.component';
 
 @NgModule({
   declarations: [
@@ -33,10 +39,15 @@ import { DashboardService } from './services/dashboard.service';
     AdminComponent,
     NotFoundComponent,
     ChatModuleComponent,
-    DashboardComponent
+    DashboardComponent,
+    TeamMembersComponent,
+    ProductsComponent,
+    OffersComponent
   ],
   imports: [
     RoutingModule,
+    HttpClientModule,
+    HttpModule,
     SharedModule
   ],
   providers: [
@@ -46,7 +57,8 @@ import { DashboardService } from './services/dashboard.service';
     CatService,
     UserService,
     ChatService,
-    DashboardService
+    DashboardService,
+    OfferService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
