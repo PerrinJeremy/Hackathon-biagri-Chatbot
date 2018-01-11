@@ -16,6 +16,8 @@ import { LogoutComponent } from './logout/logout.component';
 import { AccountComponent } from './account/account.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ChatService } from './services/chat.service';
+import { ChatModuleComponent } from './chat-module/chat-module.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     LogoutComponent,
     AccountComponent,
     AdminComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ChatModuleComponent
   ],
   imports: [
     RoutingModule,
@@ -38,7 +41,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AuthGuardLogin,
     AuthGuardAdmin,
     CatService,
-    UserService
+    UserService,
+    ChatService,
+    ChatModuleService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
