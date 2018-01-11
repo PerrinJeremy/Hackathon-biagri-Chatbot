@@ -43,7 +43,6 @@ import { ChatModuleComponent } from './chat-module/chat-module.component';
     CatService,
     UserService,
     ChatService,
-    ChatModuleService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
