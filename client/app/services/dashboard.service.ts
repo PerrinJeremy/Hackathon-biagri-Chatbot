@@ -9,23 +9,31 @@ export class DashboardService {
   private headers = new Headers({ 'Content-Type': 'application/json', 'charset': 'UTF-8' });
   private options = new RequestOptions({ headers: this.headers });
 
-  constructor(private http: Http) { }
-
+  constructor(public http: Http) { }
+prod;
   // Products
 
   getSupplyProductList() {
     return this.http.get('http://hackathon-api-biagri.herokuapp.com/supply/products').map(res => res.json());
   }
-  getSupplyProduct(id) {
-    return this.http.get(`http://hackathon-api-biagri.herokuapp.com/supply/products/${id}`).map(res => res.json());
+  getSupplyProduct() {
+    this.http.get('http://hackathon-api-biagri.herokuapp.com/supply/products/2').map(res => res.json());
   }
   getCollectionProductList() {
     return this.http.get('http://hackathon-api-biagri.herokuapp.com/collection/products').map(res => res.json());
   }
-  getCollectionProduct(id) {
-    return this.http.get(`http://hackathon-api-biagri.herokuapp.com/collection/products/${id}`).map(res => res.json());
+  getCollectionProduct() {
+    this.http.get('http://hackathon-api-biagri.herokuapp.com/collection/products/2').map(res => res.json()).subscribe(data => {
+      this.prod = data.description;
+    });
+    return this.prod;
   }
-
+  /* getProdDescription() {
+    this.getCollectionProduct(2).subscribe(data => {
+      this.prod = data.description;
+    });
+    return this.prod;
+  } */
   // Farmers
 
   getFarmerList() {

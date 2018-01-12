@@ -9,7 +9,7 @@ import { OfferService } from '../services/offer.service';
 })
 export class OffersComponent implements OnInit {
 
-  constructor(private dash: DashboardService, private offer: OfferService) { }
+  constructor(public dash: DashboardService, public offer: OfferService) { }
 
   products = [];
   product: string;
@@ -30,13 +30,17 @@ export class OffersComponent implements OnInit {
         }
       }
       if (this.prodId) {
-        this.getOffer();
+        return this.prodId;
       }
     });
   }
   getOffer() {
-    this.offer.getOfferList(this.prodId).subscribe(data => {
+    this.dash.getCollectionProduct().subscribe(data => {
       this.offers = data;
+      console.log(this.offers);
     });
+    if (this.offers) {
+      return this.offers.description;
+    }
   }
 }

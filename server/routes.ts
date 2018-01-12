@@ -2,8 +2,10 @@ import * as express from 'express';
 
 import CatCtrl from './controllers/cat';
 import UserCtrl from './controllers/user';
+import ProductCtrl from './controllers/products';
 import Cat from './models/cat';
 import User from './models/user';
+import Product from './models/product';
 
 export default function setRoutes(app) {
 
@@ -11,9 +13,10 @@ export default function setRoutes(app) {
 
   const catCtrl = new CatCtrl();
   const userCtrl = new UserCtrl();
+  const productCtrl = new ProductCtrl();
 
   // Cats
-  router.route('/cats').get(catCtrl.getAll);
+/*   router.route('/cats').get(catCtrl.getAll);
   router.route('/cats/count').get(catCtrl.count);
   router.route('/cat').post(catCtrl.insert);
   router.route('/cat/:id').get(catCtrl.get);
@@ -27,9 +30,12 @@ export default function setRoutes(app) {
   router.route('/user').post(userCtrl.insert);
   router.route('/user/:id').get(userCtrl.get);
   router.route('/user/:id').put(userCtrl.update);
-  router.route('/user/:id').delete(userCtrl.delete);
+  router.route('/user/:id').delete(userCtrl.delete); */
+
+  // Products
+
+  router.route('/products/:id').get(productCtrl.get);
 
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);
-
 }

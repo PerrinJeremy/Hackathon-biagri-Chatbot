@@ -4,16 +4,43 @@ import * as express from 'express';
 import * as morgan from 'morgan';
 import * as mongoose from 'mongoose';
 import * as path from 'path';
+import axios from 'axios';
 
 import setRoutes from './routes';
 
 const app = express();
-dotenv.load({ path: '.env' });
+/* dotenv.load({ path: '.env' });
 app.set('port', (process.env.PORT || 3000));
 
-app.use('/', express.static(path.join(__dirname, '../public')));
+app.use('/', express.static(path.join(__dirname, '../public'))); */
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post('/ble', async (req, res) => {
+  let itemID;
+  let offres = '';
+  axios.get('http://hackathon-api-biagri.herokuapp.com/collection/products').then(result => {
+    for (let item of result.data.products) {
+      if (req.body.result.resolvedQuery == item.name || req.body.result.resolvedQuery == item.abbreviation) {
+        this.itemID = item.id;
+      }
+    }
+    console.log(this.itemID);
+    axios.get('http://hackathon-api-biagri.herokuapp.com/collection/offers?product=' + this.itemID).then(toto => {
+      this.offres = '';
+      for (let tata of toto.data.offers) {
+        this.offres += tata.price + '€ / T du: ' + tata.beginPeriod + ' au: ' + tata.endPeriod + '\n';
+      }
+      const speech = `Voici les offres concernant ${req.body.result.resolvedQuery} sont : ${this.offres}`;
+      //const speech = `Le ${req.body.result.resolvedQuery} est : ${toto.data.description}`;
+      res.json({
+        speech: speech,
+        displayText: speech,
+        source: 'webhook-sample'
+      });
+    });
+  });
+});
 
 let mongodbURI;
 if (process.env.NODE_ENV === 'test') {
@@ -32,7 +59,7 @@ mongodb
 
     setRoutes(app);
 
-    app.get('/*', function(req, res) {
+    app.get('/*', function (req, res) {
       res.sendFile(path.join(__dirname, '../public/index.html'));
     });
 
@@ -45,6 +72,6 @@ mongodb
   })
   .catch((err) => {
     console.error(err);
-});
+  });
 
 export { app };
